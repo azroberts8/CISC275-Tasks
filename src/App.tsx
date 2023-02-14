@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import Tampa from "../src/images/tampa.jpg";
 
 function App(): JSX.Element {
     return (
@@ -17,7 +18,7 @@ function App(): JSX.Element {
                 <Row>
                     <Col>
                         <img
-                            src="http://azroberts.com/assets/images/tampa.jpg"
+                            src={Tampa}
                             alt="Night time long exposure of downtown Tampa"
                         />
                         <div
