@@ -37,3 +37,39 @@
         transform: rotate(360deg);
     }
 }
+
+h1 {
+    background-color: bisque;
+    color: maroon;
+}
+
+.App-container {
+    margin-top: 10pt;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    margin: 4pt;
+    border-radius: 4pt;
+    float: left;
+}
+
+.App-spicyBox {
+    background-color: maroon;
+    color: white;
+    margin: 4pt;
+    padding: 8pt;
+    border-radius: 4pt;
+    float: left;
+}
+
+.App-spicyBox p {
+    text-align: left;
+}
+
+.App-spicyBox ul {
+    text-align: left;
+
+}
