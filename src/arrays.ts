@@ -92,5 +92,13 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const clonedValues = [...values];
+    const index = clonedValues.every((n) => n >= 0)
+        ? clonedValues.length
+        : clonedValues.findIndex((n) => n < 0);
+    const sum = clonedValues
+        .slice(0, index)
+        .reduce((total, value) => total + value, 0);
+    clonedValues.splice(index + 1, 0, sum);
+    return clonedValues;
 }
