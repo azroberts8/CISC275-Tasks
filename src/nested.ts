@@ -53,21 +53,24 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    return questions.map((q) => q.name);
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    return questions.reduce((sum, q) => sum + q.points, 0);
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    return questions.reduce(
+        (sum, q) => (q.published ? sum + q.points : sum),
+        0
+    );
 }
 
 /***
@@ -88,7 +91,13 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    return questions.reduce(
+        (s, q) =>
+            s.concat(
+                `\n${q.id},${q.name},${q.options.length},${q.points},${q.published}`
+            ),
+        "id,name,options,points,published"
+    );
 }
 
 /**
