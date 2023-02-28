@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion, renameQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -106,7 +107,9 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    return questions.map((q) => {
+        return { questionId: q.id, text: "", submitted: false, correct: false };
+    });
 }
 
 /***
@@ -114,7 +117,9 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    return [...questions].map((q) => {
+        return { ...q, published: true };
+    });
 }
 
 /***
@@ -122,7 +127,7 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    return questions.every((q) => q.type == questions[0].type);
 }
 
 /***
@@ -136,7 +141,9 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    const newQuestions = [...questions];
+    newQuestions.push(makeBlankQuestion(id, name, type));
+    return newQuestions;
 }
 
 /***
@@ -149,7 +156,11 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const newQuestions = [...questions];
+    const index = questions.map((q) => q.id).indexOf(targetId);
+    if (index > -1)
+        newQuestions[index] = renameQuestion(newQuestions[index], newName);
+    return newQuestions;
 }
 
 /***
