@@ -11,6 +11,30 @@ export function d6(): number {
     return 1 + Math.floor(Math.random() * 6);
 }
 
+/**
+ * A helper function for the win/lose output because ESLint will not accept nested ternary operators
+ * @param left The value on the left die
+ * @param right The value on the right die
+ * @returns the outputted string to display
+ */
+function getOutput(left?: number, right?: number): string {
+    if (left != right) return "Roll Again";
+    else if (left == 1) return "You Lose";
+    else return "You Win";
+}
+
 export function TwoDice(): JSX.Element {
-    return <div>Two Dice</div>;
+    const [leftDie, setLeftDie] = useState<number>();
+    const [rightDie, setRightDie] = useState<number>();
+    return (
+        <span>
+            <Button onClick={() => setLeftDie(d6())}>Roll Left</Button>
+            <Button onClick={() => setRightDie(d6())}>Roll Right</Button>
+            <p>
+                Left Die: <span data-testid="left-die">{leftDie}</span> | Right
+                Die: <span data-testid="right-die">{rightDie}</span>
+            </p>
+            <p>{getOutput(leftDie, rightDie)}</p>
+        </span>
+    );
 }
