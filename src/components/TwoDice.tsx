@@ -17,16 +17,15 @@ export function d6(): number {
  * @param right The value on the right die
  * @returns the outputted string to display
  */
-function getOutput(left?: number, right?: number): string {
-    if (left != right || left == undefined || right == undefined)
-        return "Roll Again";
+function getOutput(left: number, right: number): string {
+    if (left != right) return "Roll Again";
     else if (left == 1) return "You Lose";
     else return "You Win";
 }
 
 export function TwoDice(): JSX.Element {
-    const [leftDie, setLeftDie] = useState<number>();
-    const [rightDie, setRightDie] = useState<number>();
+    const [leftDie, setLeftDie] = useState<number>(d6());
+    const [rightDie, setRightDie] = useState<number>(d6());
     return (
         <span>
             <Button onClick={() => setLeftDie(d6())}>Roll Left</Button>

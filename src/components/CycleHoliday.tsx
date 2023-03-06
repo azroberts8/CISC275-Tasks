@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
+/**
+ * 🏵 - EDC Orlando Music Festival
+ * 🐞 - Firefly Music Festival
+ * 🎆 - Fourth of July
+ * 🏴‍☠️ - Gasparilla
+ * 🎉 - Spring break
+ */
 type Holiday = "🏵" | "🐞" | "🎆" | "🏴‍☠️" | "🎉";
 
+/**
+ * Given the current holiday this will return the next holiday when sorted alphabetically
+ * @param holiday The current holiday emoji
+ * @returns The next holiday alphabetically
+ */
 function nextHolidayAlpha(holiday: Holiday): Holiday {
     const order: Holiday[] = ["🏵", "🐞", "🎆", "🏴‍☠️", "🎉"];
     return order[(order.indexOf(holiday) + 1) % 5];
 }
 
+/**
+ * Given the current holiday this will return the next holiday when the holidays are sorted chronologically
+ * @param holiday The current holiday emoji
+ * @returns then ext holiday emoji chronologically
+ */
 function nextHolidayChron(holiday: Holiday): Holiday {
     const order: Holiday[] = ["🏴‍☠️", "🎉", "🐞", "🎆", "🏵"];
     return order[(order.indexOf(holiday) + 1) % 5];
