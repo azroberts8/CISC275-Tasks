@@ -18,7 +18,8 @@ export function d6(): number {
  * @returns the outputted string to display
  */
 function getOutput(left?: number, right?: number): string {
-    if (left != right) return "Roll Again";
+    if (left != right || left == undefined || right == undefined)
+        return "Roll Again";
     else if (left == 1) return "You Lose";
     else return "You Win";
 }
